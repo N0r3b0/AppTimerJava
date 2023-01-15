@@ -1,0 +1,8 @@
+Application: spotify
+Hours: 0
+Minutes: 0
+Seconds: 0
+Application: Spotify
+Hours: 0
+Minutes: 0
+Seconds: 9

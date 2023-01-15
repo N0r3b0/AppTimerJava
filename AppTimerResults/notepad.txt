@@ -1,0 +1,26 @@
+Application: notepad
+Hours: 0
+Minutes: 0
+Seconds: 0
+Application: notepad
+Hours: 0
+Minutes: 0
+Seconds: 0
+Application: notepad
+Hours: 0
+Minutes: 0
+Seconds: 0
+Application: notepad
+Hours: 0
+Minutes: 0
+Seconds: 9
+2023-01-15T20:03:29.194599800Z
+Application: notepad
+Hours: 0
+Minutes: 0
+Seconds: 4
+15.01.2023 21:11:47
+Application: notepad
+Hours: 0
+Minutes: 0
+Seconds: 5
