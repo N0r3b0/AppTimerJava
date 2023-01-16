@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class AppTimer implements Runnable
+public class AppTimer
 {
     String processName;
     Instant startTime;
@@ -18,15 +18,6 @@ public class AppTimer implements Runnable
     public AppTimer(String processName)
     {
         this.processName = processName;
-    }
-
-    @Override
-    public void run()
-    {
-        while(true)
-        {
-
-        }
     }
     public static ArrayList<String> getProcesses()
     {
@@ -71,8 +62,8 @@ public class AppTimer implements Runnable
         }
         endTime = Instant.now();
         Duration timeSpan = Duration.between(startTime, endTime);
-        timeArr = new int[]{ //temp arr with time spent in applicaton
-                (int) timeSpan.toHours(), (int) timeSpan.toMinutes(), (int) timeSpan.toSeconds()
+        timeArr = new int[]{                //temp arr with time spent in applicaton
+                (int) timeSpan.toHours(), (int) timeSpan.toMinutes(), (int) timeSpan.toSeconds()  //zastosowanie rzutowania (z longa na inta)
         };
     }
     public String timeArrToString()
