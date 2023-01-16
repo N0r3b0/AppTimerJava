@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class AppTimer implements Runnable
 {
-    //public static ArrayList<String> windowsList = new ArrayList<>();
     String processName;
     Instant startTime;
     Instant endTime;
@@ -46,10 +45,20 @@ public class AppTimer implements Runnable
         }
         return tempProcList;
     }
+    /*
+     Method isRunning checks if indicated process is running by using method getProcessess.
+     GetProcess returns array of processes.
+     If this array contains processName then process is still running
+     */
     public boolean isRunning()
     {
         return getProcesses().contains(processName);
     }
+
+    /*
+    timeCounter method uses startTime and EndTime variables to count how much time has passed
+    since the start and end of the process
+    */
     public void timeCounter()
     {
         startTime = Instant.now();

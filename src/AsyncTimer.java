@@ -1,22 +1,13 @@
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.AreaAveragingScaleFilter;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-public class AsyncTest implements Runnable
+public class AsyncTimer implements Runnable
 {
-    String chosenProcess;
-    public AsyncTest(String chosenProcess)
+    String chosenProcess;                       //nazwa wybranego procesu
+    public AsyncTimer(String chosenProcess)
     {
         this.chosenProcess = chosenProcess;
     }
 
     @Override
-    public void run() {
+    public void run() {                                 //metoda uruchamiana podczas wykonywania sie watku
         AppTimer app = new AppTimer(chosenProcess);
         app.timeCounter();
         app.sendToFile();
