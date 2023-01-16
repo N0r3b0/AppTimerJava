@@ -66,7 +66,7 @@ public class AppTimer
     }
     public void sendToFile()
     {
-        String path = "D:\\Programowanie\\Programowanie_git\\1_MojeProjekty\\AppTimerJava\\AppTimerResults\\" + processName + ".txt";
+        String path = "./AppTimerResults/" + processName + ".txt";
         try {
             FileWriter writer = new FileWriter(path,true);
             writer.append(timeArrToString());

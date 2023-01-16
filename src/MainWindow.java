@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public class MainWindow extends JFrame
 {
-    ArrayList<String> processesList = AppTimer.getProcesses();
-    int height = 761;
-    int width = 669;
+    static int height = 761;
+    static int width = 669;
     ImageIcon icon = new ImageIcon("appTimerIcon.png");
     JButton button = new JButton();
+    static Border border = BorderFactory.createLineBorder(Design.backColor);
 
     public MainWindow()
     {
@@ -21,14 +21,11 @@ public class MainWindow extends JFrame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(width, height);
         this.setLayout(null);
-        this.setResizable(false);
+        //this.setResizable(false);
 
         this.setTitle("App Timer");
         this.setIconImage(icon.getImage());
         this.getContentPane().setBackground(Design.backColor);
-
-        Border border = BorderFactory.createLineBorder(Design.backColor);
-
 
         JLabel title = new JLabel("AppTimer");
         title.setPreferredSize(new Dimension(250,100));
@@ -50,24 +47,40 @@ public class MainWindow extends JFrame
         button.setFont(Design.titleFont);
         button.setBounds(width/2-150, 150, 300, 50);
         button.setText("Show processes");
+
+
+        ArrayList<String> procList = AppTimer.getProcesses();   //refresh
+
+        JPanel processesPanel = new JPanel();
+        processesPanel.setBounds(width/2-200,225,400,procList.size()*35);
+        processesPanel.setBackground(Design.foreColor);
+        processesPanel.setLayout(new GridLayout(procList.size(),procList.size()));   //cols = amount of processes
+        addProcButtons(processesPanel ,procList);
+
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                repaint();
+                rmProcButtons(processesPanel, procList);
+                ArrayList<String> procList1 = AppTimer.getProcesses();
+                addProcButtons(processesPanel, procList1);
             }
         });
 
 
-        JPanel showProcessesPanel = new JPanel();
-        showProcessesPanel.setBounds(width/2-200,225,400,processesList.size()*35);
-        showProcessesPanel.setBackground(Design.foreColor);
-        showProcessesPanel.setLayout(new GridLayout(processesList.size(),processesList.size()));   //cols = amount of processes
+        this.add(title, BorderLayout.NORTH);
+        this.add(button);
+        this.add(processesPanel);
 
+        this.setVisible(true);
+    }
 
-        for (int i = 0; i < processesList.size(); i++) {            //pętla do dodawania procesów
+    public static void addProcButtons(JPanel showProcessesPanel, ArrayList<String> procList)
+    {
+        for (int i = 0; i < procList.size(); i++) {            //pętla do dodawania procesów
             final int index = i;
 
-            JButton[] buttons = new JButton[processesList.size()];
+            JButton[] buttons = new JButton[procList.size()];
             buttons[i] = new JButton();
             buttons[i].setUI(new MyButtonUI());
             buttons[i].setFocusable(false);
@@ -76,25 +89,29 @@ public class MainWindow extends JFrame
             buttons[i].setBorder(border);
             buttons[i].setFont(Design.titleFont);
             buttons[i].setBounds(width/2-150, 150, 300, 50);
-            buttons[i].setText(processesList.get(i));
+            buttons[i].setText(procList.get(i));
 
             buttons[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     AppTimer timer = new AppTimer(buttons[index].getText());
                     timer.timeCounter();
-                    timer.sendToFile();
+                      timer.sendToFile();
                 }
             });
 
             showProcessesPanel.add(buttons[i]);
         }
 
-        this.add(title, BorderLayout.NORTH);
-        this.add(button);
-        this.add(showProcessesPanel);
+    }
+    public static void rmProcButtons(JPanel showProcessesPanel, ArrayList<String> procList)
+    {
+        for (int i = 0; i < procList.size(); i++) {            //pętla do dodawania procesów
+            final int index = i;
+            showProcessesPanel.remove(showProcessesPanel.getComponent(0));
 
-        this.setVisible(true);
+        }
+
     }
 
     public static void main(String[] args)

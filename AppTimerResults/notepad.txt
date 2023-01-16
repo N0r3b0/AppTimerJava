@@ -24,3 +24,13 @@ Application: notepad
 Hours: 0
 Minutes: 0
 Seconds: 5
+16.01.2023 09:03:24
+Application: notepad
+Hours: 0
+Minutes: 0
+Seconds: 4
+16.01.2023 09:31:56
+Application: notepad
+Hours: 0
+Minutes: 0
+Seconds: 5
