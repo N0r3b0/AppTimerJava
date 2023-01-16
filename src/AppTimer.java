@@ -46,7 +46,7 @@ public class AppTimer
         startTime = Instant.now();
         while (isRunning()) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

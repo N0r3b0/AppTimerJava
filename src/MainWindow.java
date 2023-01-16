@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -14,6 +12,7 @@ public class MainWindow extends JFrame
     ImageIcon icon = new ImageIcon("appTimerIcon.png");
     JButton button = new JButton();
     static Border border = BorderFactory.createLineBorder(Design.backColor);
+    ArrayList<String> procList = AppTimer.getProcesses();
 
     public MainWindow()
     {
@@ -48,9 +47,6 @@ public class MainWindow extends JFrame
         button.setBounds(width/2-150, 150, 300, 50);
         button.setText("Show processes");
 
-
-        ArrayList<String> procList = AppTimer.getProcesses();   //refresh
-
         JPanel processesPanel = new JPanel();
         processesPanel.setBounds(width/2-200,225,400,procList.size()*35);
         processesPanel.setBackground(Design.foreColor);
@@ -60,10 +56,14 @@ public class MainWindow extends JFrame
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                repaint();
                 rmProcButtons(processesPanel, procList);
-                ArrayList<String> procList1 = AppTimer.getProcesses();
-                addProcButtons(processesPanel, procList1);
+                procList = new ArrayList<String>();
+                procList = AppTimer.getProcesses();
+                processesPanel.setBounds(width/2-200,225,400,procList.size()*35);
+                processesPanel.setLayout(new GridLayout(procList.size(),procList.size()));
+                addProcButtons(processesPanel, procList);
+                validate();
+
             }
         });
 
@@ -106,10 +106,8 @@ public class MainWindow extends JFrame
     }
     public static void rmProcButtons(JPanel showProcessesPanel, ArrayList<String> procList)
     {
-        for (int i = 0; i < procList.size(); i++) {            //pętla do dodawania procesów
-            final int index = i;
+        for (int i = 0; i < procList.size(); i++) {            //pętla do usuwanioa procesów
             showProcessesPanel.remove(showProcessesPanel.getComponent(0));
-
         }
 
     }
@@ -117,7 +115,5 @@ public class MainWindow extends JFrame
     public static void main(String[] args)
     {
         MainWindow win = new MainWindow();
-        System.out.println(AppTimer.getProcesses().size());
-        System.out.println(AppTimer.getProcesses().get(2));
     }
 }
