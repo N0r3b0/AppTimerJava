@@ -7,6 +7,14 @@ import java.util.ArrayList;
 
 public class MainWindow extends JFrame
 {
+//    @Override
+//    public void run() {
+//        AppTimer app = new AppTimer(chosenProcess);
+//        app.timeCounter();
+//        app.sendToFile();
+//    }
+    static String chosenProcess;
+
     static int height = 761;
     static int width = 669;
     ImageIcon icon = new ImageIcon("appTimerIcon.png");
@@ -94,9 +102,9 @@ public class MainWindow extends JFrame
             buttons[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    AppTimer timer = new AppTimer(buttons[index].getText());
-                    timer.timeCounter();
-                      timer.sendToFile();
+                    AsyncTest t1 = new AsyncTest(buttons[index].getText());
+                    Thread thread = new Thread(t1);
+                    thread.start();
                 }
             });
 
@@ -111,6 +119,7 @@ public class MainWindow extends JFrame
         }
 
     }
+
 
     public static void main(String[] args)
     {

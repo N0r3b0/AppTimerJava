@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class AppTimer
+public class AppTimer implements Runnable
 {
     //public static ArrayList<String> windowsList = new ArrayList<>();
     String processName;
@@ -19,6 +19,15 @@ public class AppTimer
     public AppTimer(String processName)
     {
         this.processName = processName;
+    }
+
+    @Override
+    public void run()
+    {
+        while(true)
+        {
+
+        }
     }
     public static ArrayList<String> getProcesses()
     {

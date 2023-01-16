@@ -1,0 +1,5 @@
+16.01.2023 17:59:53
+Application: putty
+Hours: 0
+Minutes: 0
+Seconds: 2
